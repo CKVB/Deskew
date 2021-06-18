@@ -1,5 +1,4 @@
 from flask import jsonify, request
-from PIL import Image
 import cv2
 import requests
 import os
@@ -11,9 +10,10 @@ APP_ROOT = os.path.dirname(os.path.abspath(__file__)).split("routes")[0]
 def deskew_image():
     data = request.get_json()
     url = data["image_path"]
-    image = Image.open(requests.get(url, stream=True).raw)
+    response = requests.get(url, stream=True).raw
+    image = np.asarray(bytearray(response.read()), dtype="uint8")
+    image = cv2.imdecode(image, cv2.IMREAD_COLOR)
     image = np.array(image)
-
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     edges = cv2.Canny(gray, 50, 150, apertureSize=3)
 
