@@ -34,9 +34,6 @@ def deskew_image():
 
     angle = slope * (180/np.pi)
 
-    if angle < -45:
-        angle = -(90+angle)
-
     #cv2.line(image, (x0, y0), (x1, y1), (0, 255, 0), 2)
 
     h, w, c = image.shape
