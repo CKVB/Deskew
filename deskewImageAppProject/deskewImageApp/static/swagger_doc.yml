@@ -1,0 +1,40 @@
+openapi: 3.0.1
+info:
+  title: Deskew App.
+  description: Deskew a skewed image using OpenCV.
+  version: 1.0.0
+servers:
+- url: /
+
+paths:
+  /deskew:
+    post:
+      tags:
+      - deskew
+      summary: deskew an image.
+      requestBody:
+        description: "provide skewed image url."
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Deskew"
+      responses:
+        200:
+          description: success.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeskewResponseBody"
+components:
+  schemas:
+    Deskew:
+      properties:
+        image_path:
+          type: string
+    DeskewResponseBody:
+      properties:
+        deskewd_image_url:
+          type: string
+        skewed_angle:
+          type: number
