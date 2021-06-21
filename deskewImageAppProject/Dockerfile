@@ -7,9 +7,11 @@ COPY . /deskewAppProject
 WORKDIR /deskewAppProject
 
 RUN apt-get update &&\
-	apt-get -y install --no-install-recommends python3.6 &&\
-	apt-get -y install --no-install-recommends python3-pip &&\
-	apt-get -y install --no-install-recommends python3-opencv &&\
+	apt-get remove -y &&\
+	apt-get -y install --no-install-recommends --yes python3.6 &&\
+	apt-get -y install --no-install-recommends --yes python3-pip &&\
+	apt-get -y install --no-install-recommends --yes python3-setuptools &&\
+	apt-get -y install --no-install-recommends --yes python3-opencv &&\
 	python3 -m pip install --upgrade pip &&\
 	pip3 install -r requirements.txt &&\
 	apt-get clean &&\
