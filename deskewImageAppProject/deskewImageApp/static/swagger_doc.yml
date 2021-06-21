@@ -26,6 +26,14 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeskewResponseBody"
+        400:
+          description: invalid url.
+        404:
+          description: file not found.
+        406:
+          description: not able to process.
+        422:
+          description: request not processable.
 components:
   schemas:
     Deskew:
