@@ -1,0 +1,13 @@
+name: DockerCI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: docker build deskew image
+        run: docker build ./deskewImageProject -t ck1998/deskew:1.0.0
