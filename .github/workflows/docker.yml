@@ -17,7 +17,7 @@ jobs:
         run: docker login -u $DOCKER_USER_NAME -p $DOCKER_PASSWORD
         
       - name: docker build deskew image
-        run: docker build ./deskewImageAppProject -t ck1998/deskew_app_image:1.0.0
+        run: docker build ./deskewImageAppProject -t ${{ secrets.DOCKER_USER_NAME }}/deskew_app_image:1.0.0
         
       - name: docker push
-        run: docker push ck1998/deskew_app_image:1.0.0
+        run: docker push ${{ secrets.DOCKER_USER_NAME }}/deskew_app_image:1.0.0
