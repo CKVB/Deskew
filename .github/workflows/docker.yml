@@ -30,9 +30,9 @@ jobs:
       - name: heroku Build, Push, Release
         uses: gonuit/heroku-docker-deploy@v1.3.3
         with:
-          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_email: ${{ secrets.HEROKU_MAIL }}
           heroku_app_name: ${{ secrets.APP_NAME }}
+          email: ${{ secrets.HEROKU_MAIL }}
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           dockerfile_directory: ./deskewImageAppProject
           docker_options: "--no-cache"
       
