@@ -30,30 +30,23 @@ jobs:
       - name: heroku login
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-          WORKING_DIRECTORY: ./deskewImageAppProject
-        working-directory: $WORKINGDIRECTORY
         run: heroku container:login
       
       - name: create app
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
           APP_NAME: ${{ secrets.APP_NAME }}
-          WORKING_DIRECTORY: ./deskewImageAppProject
-        working-directory: $WORKINGDIRECTORY
         run: heroku create $APP_NAME
         
       - name: push app
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
           APP_NAME: ${{ secrets.APP_NAME }}
-          WORKING_DIRECTORY: ./deskewImageAppProject
-        working-directory: $WORKINGDIRECTORY
+        working-directory: ./deskewImageAppProject
         run: heroku container:push web -a $APP_NAME
         
       - name: release app
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
           APP_NAME: ${{ secrets.APP_NAME }}
-          WORKING_DIRECTORY: ./deskewImageAppProject
-        working-directory: $WORKINGDIRECTORY
         run: heroku container:release web -a $APP_NAME
