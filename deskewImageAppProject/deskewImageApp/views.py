@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, redirect
 from flask_swagger_ui import get_swaggerui_blueprint
 from .routes.getView import get_view
 
@@ -12,7 +12,7 @@ deskew_api = Blueprint("deskew_api", __name__)
 
 @deskew_api.route("/", methods=["GET"])
 def index():
-    return get_view("INDEX")
+    return redirect("/swagger")
 
 
 @deskew_api.route("/deskew", methods=["POST"])
