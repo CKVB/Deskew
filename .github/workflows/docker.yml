@@ -1,4 +1,4 @@
-name: Build-CI
+name: Build
 
 on:
   push:
@@ -32,7 +32,12 @@ jobs:
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         run: heroku container:login
-        
+
+      - name: remove previous app
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+          APP_NAME: ${{ secrets.APP_NAME }}
+        run: heroku apps:destroy $APP_NAME --confirm $APP_NAME
       
       - name: create app
         env:
