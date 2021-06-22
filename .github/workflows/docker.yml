@@ -27,23 +27,26 @@ jobs:
           DOCKER_USER_NAME: ${{ secrets.DOCKER_USER_NAME }}
         run: docker push $DOCKER_USER_NAME/deskew_app_image:1.0.0
         
-      - name: heroku login and create app
+      - name: heroku login
         env:
-          HEROKU_API_KEY = ${{ secrets.HEROKU_API_KEY }}
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         run: heroku:container login
       
       - name: create app
         env:
-          APP_NAME = ${{ secrets.APP_NAME }}
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+          APP_NAME: ${{ secrets.APP_NAME }}
         run: heroku create $APP_NAME
         
       - name: push app
         env:
-          APP_NAME = ${{ secrets.APP_NAME }}
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+          APP_NAME: ${{ secrets.APP_NAME }}
         run: heroku container:push web -a $APP_NAME
         
       - name: release app
         env:
-          APP_NAME = ${{ secrets.APP_NAME }}
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+          APP_NAME: ${{ secrets.APP_NAME }}
         run: heroku container:release web -a $APP_NAME
         
