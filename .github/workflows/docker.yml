@@ -28,12 +28,13 @@ jobs:
         run: docker push $DOCKER_USER_NAME/deskew_app_image:1.0.0
       
       - name: heroku Build, Push, Release
-        uses: akhileshns/heroku-deploy@v3.12.1
+        uses: gonuit/heroku-docker-deploy@v1.3.3
         with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_email: ${{ secrets.HEROKU_MAIL }}
           heroku_app_name: ${{ secrets.APP_NAME }}
           dockerfile_directory: ./deskewImageAppProject
+          docker_options: "--no-cache"
       
       
       
