@@ -26,29 +26,14 @@ jobs:
         env: 
           DOCKER_USER_NAME: ${{ secrets.DOCKER_USER_NAME }}
         run: docker push $DOCKER_USER_NAME/deskew_app_image:1.0.0
-        
-      - name: heroku login
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: heroku container:login
       
-      - name: create app
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-          APP_NAME: ${{ secrets.APP_NAME }}
-        run: heroku create $APP_NAME
-        
-      - name: push app
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-          APP_NAME: ${{ secrets.APP_NAME }}
-          working-directory: ./deskewImageAppProject
-        run: heroku container:push web -a $APP_NAME
-        
-      - name: release app
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-          APP_NAME: ${{ secrets.APP_NAME }}
-          working-directory: ./deskewImageAppProject
-        run: heroku container:release web -a $APP_NAME
-        
+      - name: heroku Build, Push, Release
+        uses: gonuit/heroku-docker-deploy@v1.3.3
+        with:
+          email: ${{ secrets.HEROKU_MAIL }}
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: ${{ secrets.APP_NAME }}
+          dockerfile_directory: ./deskewImageAppProject
+      
+      
+      
