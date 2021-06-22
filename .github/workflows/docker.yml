@@ -33,7 +33,7 @@ jobs:
           heroku_app_name: ${{ secrets.APP_NAME }}
           email: ${{ secrets.HEROKU_MAIL }}
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          dockerfile_directory: ./deskewImageAppProject
+          dockerfile_directory: ./deskewImageAppProject/
           docker_options: "--no-cache"
       
       
