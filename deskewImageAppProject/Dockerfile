@@ -1,7 +1,7 @@
 FROM ubuntu:18.04
 
 ENV DEBIAN_FRONTEND="noninteractive"\
-	FLASK_ENV=development
+	FLASK_ENV=production
 
 COPY . /deskewAppProject
 WORKDIR /deskewAppProject
