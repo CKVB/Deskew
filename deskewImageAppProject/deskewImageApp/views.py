@@ -12,7 +12,7 @@ deskew_api = Blueprint("deskew_api", __name__)
 
 @deskew_api.route("/", methods=["GET"])
 def index():
-    return redirect("/swagger")
+    return redirect("swagger")
 
 
 @deskew_api.route("/deskew", methods=["POST"])
