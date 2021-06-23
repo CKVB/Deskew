@@ -58,6 +58,7 @@ def deskew_image():
         angle = slope * (180 / np.pi)
     
         # cv2.line(image, (x0, y0), (x1, y1), (0, 255, 0), 2).
+        
         # draw a line on the image.
 
         height, width, channel = image.shape
