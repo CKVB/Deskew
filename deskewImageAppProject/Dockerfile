@@ -18,4 +18,4 @@ RUN apt-get update &&\
 	rm -rf /var/cache/apt/* &&\
 	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-CMD gunicorn --workers=5 --bind 0.0.0.0:$PORT wsgi:app
+CMD ["/bin/bash", "entrypoint.sh"]
